@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-export function HousesShow(props) {
+export function HousesShow() {
   const [house, setHouse] = useState({});
   const params = useParams();
 
@@ -17,7 +17,11 @@ export function HousesShow(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
-    props.onHouseUpdate(house.id, params, () => event.target.reset());
+    axios
+      .patch(`http://localhost:3000/houses/${house.id}.json`, params)
+      .then((response) => {
+        setHouse(response.data);
+      });
   };
 
   useEffect(getHouseData, []);
