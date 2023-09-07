@@ -22,6 +22,7 @@ export function HousesShow() {
       .then((response) => {
         setHouse(response.data);
       });
+    event.target.reset();
   };
 
   const handleClick = () => {
