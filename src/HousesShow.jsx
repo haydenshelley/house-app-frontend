@@ -24,6 +24,11 @@ export function HousesShow() {
       });
   };
 
+  const handleClick = () => {
+    axios.delete(`http://localhost:3000/houses/${house.id}.json`);
+    window.location.href = "/houses";
+  };
+
   useEffect(getHouseData, []);
 
   return (
@@ -51,6 +56,9 @@ export function HousesShow() {
           <input defaultValue={house.bathrooms} name="bathrooms" type="text" />
         </div>
         <button type="submit">Update House</button>
+        <br />
+        <br />
+        <button onClick={handleClick}>Delete House</button>
       </form>
     </div>
   );
