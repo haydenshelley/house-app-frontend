@@ -1,7 +1,9 @@
 import axios from "axios";
+import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { HousesIndex } from "./HousesIndex";
 import { HousesNew } from "./HousesNew";
+import { HousesShow } from "./HousesShow";
 
 export function Content() {
   const [houses, setHouses] = useState([]);
@@ -24,8 +26,14 @@ export function Content() {
   return (
     <div>
       <h1>House App</h1>
-      <HousesIndex houses={houses} />
-      <HousesNew onHousesCreate={handleHousesCreate} />
+      <Routes>
+        <Route path="/houses" element={<HousesIndex houses={houses} />} />
+        <Route path="/houses/:id" element={<HousesShow />} />
+        <Route
+          path="/houses/new"
+          element={<HousesNew onHousesCreate={handleHousesCreate} />}
+        />
+      </Routes>
     </div>
   );
 }
